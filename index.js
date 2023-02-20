@@ -54,6 +54,7 @@ app.get('/add', (req, res) => {
 app.post('/save',(req, res) => {
     let data = {username, email, password} = req.body;
     let sql = "INSERT INTO userkeranjang SET ?";
+    console.log(data);
     let query = connection.query(sql, data,(err,result) =>{
         if(err) throw err;
         // res.render('userkeranjang_add',{
@@ -79,7 +80,7 @@ app.get('/edit/:userkeranjangId',(req,res) => {
 
 app.post('/update',(req,res)=>{
     const userId= req.body.id;
-    let sql = `update userkeranjang set nama ='${req.body.username}', password='${req.body.password}', email=${req.body.email} where id=${userkeranjangId}`;
+    let sql = `UPDATE userkeranjang SET username='${req.body.username}',password='${req.body.password}', email='${req.body.email}' WHERE id='${userId}'`;
     let query = connection.query(sql, (err, result)=>{
         if(err) throw err;
         res.redirect('/');
